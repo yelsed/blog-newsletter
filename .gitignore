@@ -1,0 +1,12 @@
+# IDE
+.idea
+.vscode
+.fleet
+.zed
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maizzle build output (built into backend views via deploy script)
+emails/build_production/

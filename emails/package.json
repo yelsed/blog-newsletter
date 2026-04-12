@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "maizzle serve",
+    "build": "maizzle build production",
+    "deploy": "maizzle build production && node scripts/copy-to-laravel.js"
+  },
+  "dependencies": {
+    "@maizzle/framework": "latest",
+    "tailwindcss-preset-email": "latest"
+  }
+}
