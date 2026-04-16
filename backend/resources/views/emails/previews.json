@@ -1,0 +1,10 @@
+{
+  "templates": [
+    "verify-subscription"
+  ],
+  "variables": {
+    "appName": "Newsletter",
+    "subscriberName": "Preview User",
+    "verificationUrl": "http://localhost:3000/newsletter/verify?token=preview-token-abc123"
+  }
+}

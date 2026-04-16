@@ -1,0 +1,19 @@
+{
+  "name": "blog-laravel-nuxt",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "up": "cd backend && ./vendor/bin/sail up -d",
+    "down": "cd backend && ./vendor/bin/sail down",
+    "dev": "npm run up && concurrently -n queue,logs,frontend,emails,emails-sync -c magenta,gray,cyan,yellow,green --kill-others \"npm:dev:queue\" \"npm:dev:logs\" \"npm:dev:frontend\" \"npm:dev:emails\" \"npm:dev:emails-sync\"",
+    "dev:queue": "cd backend && ./vendor/bin/sail artisan queue:listen --tries=1 --timeout=0",
+    "dev:logs": "cd backend && ./vendor/bin/sail artisan pail --timeout=0",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:emails": "cd emails && npm run dev",
+    "dev:emails-sync": "cd emails && chokidar \"emails/**/*.html\" \"components/**/*.html\" \"layouts/**/*.html\" \"config.js\" \"config.production.js\" -c \"npm run deploy\""
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.0"
+  }
+}

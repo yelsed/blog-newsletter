@@ -1,0 +1,39 @@
+{
+  "common": {
+    "back_home": "Back to home"
+  },
+  "header": {
+    "brand": "Newsletter"
+  },
+  "footer": {
+    "copyright": "© {year} {brand}. All rights reserved."
+  },
+  "home": {
+    "title": "Stay in the loop",
+    "subtitle": "Subscribe to our newsletter for fun updates, hobby tips, and interesting reads delivered straight to your inbox."
+  },
+  "form": {
+    "name_label": "Name (optional)",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "you{'@'}example.com",
+    "submit": "Subscribe",
+    "submitting": "Subscribing...",
+    "success": "Thanks for subscribing! Check your email to verify your subscription.",
+    "error_default": "Something went wrong. Please try again."
+  },
+  "verify": {
+    "loading": "Verifying your email...",
+    "success_title": "You're verified!",
+    "error_title": "Verification failed",
+    "no_token": "No verification token provided.",
+    "invalid_link": "This verification link is invalid or has already been used."
+  },
+  "unsubscribe": {
+    "loading": "Processing your request...",
+    "success_title": "Unsubscribed",
+    "error_title": "Something went wrong",
+    "no_token": "No unsubscribe token provided.",
+    "invalid_link": "This unsubscribe link is invalid or has already been used."
+  }
+}
