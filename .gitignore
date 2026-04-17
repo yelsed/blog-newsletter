@@ -10,3 +10,6 @@ Thumbs.db
 
 # Maizzle build output (built into backend views via deploy script)
 emails/build_production/
+
+# Root orchestrator (concurrently, chokidar-cli)
+node_modules/

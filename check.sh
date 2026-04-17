@@ -14,6 +14,17 @@ pass() { echo -e "${GREEN}✓ $1${NC}"; }
 fail() { echo -e "${RED}✗ $1${NC}"; FAILED=1; }
 heading() { echo -e "\n${YELLOW}━━━ $1 ━━━${NC}"; }
 
+# --- Emails: build + deploy to Laravel views (must run before backend tests
+#     because PreviewTest renders emails.composed-email, which lives at
+#     backend/resources/views/emails/composed-email.blade.php — a Maizzle build
+#     artifact). This step is idempotent. ---
+heading "Emails: Maizzle build + deploy"
+if (cd "$ROOT_DIR/emails" && npm run deploy 2>&1); then
+    pass "Maizzle build + deploy"
+else
+    fail "Maizzle build + deploy"
+fi
+
 # --- Backend checks ---
 heading "Backend: Pint (code style)"
 if (cd "$ROOT_DIR/backend" && ./vendor/bin/pint --test); then
@@ -49,14 +60,6 @@ if (cd "$ROOT_DIR/frontend" && npm run build 2>&1); then
     pass "Nuxt build"
 else
     fail "Nuxt build"
-fi
-
-# --- Emails checks ---
-heading "Emails: Maizzle build"
-if (cd "$ROOT_DIR/emails" && npm run build 2>&1); then
-    pass "Maizzle build"
-else
-    fail "Maizzle build"
 fi
 
 # --- Summary ---

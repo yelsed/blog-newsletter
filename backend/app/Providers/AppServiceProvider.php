@@ -25,5 +25,17 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('newsletter', function (Request $request): Limit {
             return Limit::perMinute(5)->by($request->ip());
         });
+
+        RateLimiter::for('admin-send', function (Request $request): Limit {
+            $id = $request->user()?->getAuthIdentifier();
+
+            return Limit::perMinute(3)->by($id !== null ? (string) $id : (string) $request->ip());
+        });
+
+        RateLimiter::for('admin-test', function (Request $request): Limit {
+            $id = $request->user()?->getAuthIdentifier();
+
+            return Limit::perMinute(10)->by($id !== null ? (string) $id : (string) $request->ip());
+        });
     }
 }

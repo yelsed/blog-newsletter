@@ -9,6 +9,14 @@
 |
 */
 
+import previewVars from './preview-vars.js'
+
+// Production overrides: each preview variable becomes Blade syntax
+// so Laravel renders the real value at send time.
+const bladeBindings = Object.fromEntries(
+  Object.keys(previewVars).map(key => [key, `{{ $${key} }}`])
+)
+
 /** @type {import('@maizzle/framework').Config} */
 export default {
   build: {
@@ -22,8 +30,5 @@ export default {
     shorthand: true,
   },
   prettify: true,
-  // Production variables use Blade syntax — Laravel will replace these
-  appName: '{{ $appName }}',
-  subscriberName: '{{ $subscriberName }}',
-  verificationUrl: '{{ $verificationUrl }}',
+  ...bladeBindings,
 }

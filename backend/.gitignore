@@ -23,3 +23,7 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Maizzle-generated artifacts — source lives in ../emails/
+/resources/views/emails/*.blade.php
+/resources/views/emails/previews.json

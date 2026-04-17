@@ -9,6 +9,8 @@
 |
 */
 
+import previewVars from './preview-vars.js'
+
 /** @type {import('@maizzle/framework').Config} */
 export default {
   build: {
@@ -23,8 +25,5 @@ export default {
     hmr: true,
     scrollSync: false,
   },
-  // Preview variables — used during dev and replaced by Laravel in production
-  appName: 'Newsletter',
-  subscriberName: 'Preview User',
-  verificationUrl: 'http://localhost:3000/newsletter/verify?token=preview-token-abc123',
+  ...previewVars,
 }

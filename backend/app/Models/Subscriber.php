@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Carbon\CarbonImmutable;
 use Database\Factories\SubscriberFactory;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,18 +26,12 @@ use Illuminate\Support\Str;
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $updated_at
  */
+#[Fillable(['email', 'name', 'email_verified_at', 'unsubscribed_at'])]
+#[Hidden(['verification_token'])]
 class Subscriber extends Model
 {
     /** @use HasFactory<SubscriberFactory> */
     use HasFactory;
-
-    /** @var list<string> */
-    protected $fillable = [
-        'email',
-        'name',
-        'email_verified_at',
-        'unsubscribed_at',
-    ];
 
     /** @return array<string, string> */
     protected function casts(): array
