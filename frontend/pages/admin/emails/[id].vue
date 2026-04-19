@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Block, Email } from '~/types/email'
+import { ensureUid, stripUid } from '~/types/email'
 import ComposerShell from '~/components/admin/composer/ComposerShell.vue'
 
 definePageMeta({
@@ -30,10 +31,14 @@ const testing = ref(false)
 const errorMessage = ref('')
 const flashMessage = ref('')
 
+function hydrateBlocks(blocks: Block[] | null | undefined): Block[] {
+  return (blocks ?? []).map(ensureUid)
+}
+
 if (!isNew.value) {
   try {
     const loaded = await api<Email>(`/admin/emails/${idParam.value}`)
-    email.value = { ...loaded, blocks: loaded.blocks ?? [] }
+    email.value = { ...loaded, blocks: hydrateBlocks(loaded.blocks) }
   }
   catch (e) {
     errorMessage.value = e instanceof Error ? e.message : 'Could not load email.'
@@ -44,21 +49,25 @@ async function handleSave(payload: { subject: string, blocks: Block[] }) {
   saving.value = true
   errorMessage.value = ''
   flashMessage.value = ''
+  const body = JSON.stringify({
+    subject: payload.subject,
+    blocks: payload.blocks.map(stripUid),
+  })
   try {
     if (email.value.id === null) {
       const created = await api<Email>('/admin/emails', {
         method: 'POST',
-        body: JSON.stringify(payload),
+        body,
       })
-      email.value = { ...created, blocks: created.blocks ?? [] }
+      email.value = { ...created, blocks: hydrateBlocks(created.blocks) }
       await router.replace(`/admin/emails/${created.id}`)
     }
     else {
       const updated = await api<Email>(`/admin/emails/${email.value.id}`, {
         method: 'PUT',
-        body: JSON.stringify(payload),
+        body,
       })
-      email.value = { ...updated, blocks: updated.blocks ?? [] }
+      email.value = { ...updated, blocks: hydrateBlocks(updated.blocks) }
     }
     flashMessage.value = 'Saved.'
   }

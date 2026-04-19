@@ -11,13 +11,17 @@ use Illuminate\Support\Arr;
 trait ValidatesEmailBlocks
 {
     /** @return array<string, array<int, string>> */
-    protected function emailBlockRules(): array
+    protected function emailBlockRules(bool $preview = false): array
     {
         $types = implode(',', array_column(BlockType::cases(), 'value'));
 
         $rules = [
-            'subject' => ['required', 'string', 'max:255'],
-            'blocks' => ['required', 'array', 'min:1'],
+            'subject' => $preview
+                ? ['nullable', 'string', 'max:255']
+                : ['required', 'string', 'max:255'],
+            'blocks' => $preview
+                ? ['sometimes', 'array', 'max:50']
+                : ['required', 'array', 'min:1'],
             'blocks.*' => ['required', 'array'],
             'blocks.*.type' => ['required', 'string', 'in:'.$types],
         ];
@@ -36,7 +40,11 @@ trait ValidatesEmailBlocks
                 continue;
             }
 
-            foreach (BlockDataFactory::rulesFor($type) as $field => $fieldRules) {
+            $typeRules = $preview
+                ? BlockDataFactory::previewRulesFor($type)
+                : BlockDataFactory::rulesFor($type);
+
+            foreach ($typeRules as $field => $fieldRules) {
                 $rules["blocks.{$index}.{$field}"] = $fieldRules;
             }
         }

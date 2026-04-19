@@ -27,7 +27,7 @@ function remove(index: number) {
   <ul class="flex flex-col gap-3">
     <li
       v-for="(block, index) in blocks"
-      :key="index"
+      :key="block._uid"
       class="rounded-md border border-slate-200 bg-white p-4"
     >
       <div class="mb-3 flex items-center justify-between">

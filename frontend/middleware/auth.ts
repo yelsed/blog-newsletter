@@ -5,9 +5,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
     await fetchMe()
   }
 
-  if (!user.value || !isAdmin.value) {
-    if (to.path !== '/admin/login' && to.path !== '/admin/register') {
-      return navigateTo('/admin/login')
-    }
+  const isPublicAuthRoute = to.path === '/admin/login' || to.path === '/admin/register'
+
+  if (user.value && isAdmin.value && to.path === '/admin/login') {
+    return navigateTo('/admin')
+  }
+
+  if ((!user.value || !isAdmin.value) && !isPublicAuthRoute) {
+    return navigateTo('/admin/login')
   }
 })

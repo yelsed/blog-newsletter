@@ -85,9 +85,6 @@ function handleSend() {
     </section>
 
     <aside class="flex flex-col gap-2">
-      <h2 class="text-sm font-medium uppercase tracking-wide text-slate-500">
-        Preview
-      </h2>
       <PreviewPane :subject="subject" :blocks="blocks" />
     </aside>
   </div>

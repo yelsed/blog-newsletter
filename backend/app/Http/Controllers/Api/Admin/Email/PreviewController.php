@@ -15,14 +15,14 @@ class PreviewController extends Controller
 {
     public function __invoke(PreviewEmailRequest $request, RenderEmailHtmlAction $render): JsonResponse
     {
-        /** @var array{subject: string, blocks: array<int, array<string, mixed>>} $validated */
+        /** @var array{subject?: string|null, blocks?: array<int, array<string, mixed>>} $validated */
         $validated = $request->validated();
 
         $data = new EmailData(
-            subject: $validated['subject'],
+            subject: (string) ($validated['subject'] ?? ''),
             blocks: array_values(array_map(
                 static fn (array $payload) => BlockDataFactory::fromArray($payload),
-                $validated['blocks'],
+                $validated['blocks'] ?? [],
             )),
         );
 

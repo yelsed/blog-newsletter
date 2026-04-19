@@ -32,6 +32,16 @@ async function handleDelete(id: number) {
 
 const drafts = computed(() => emails.value?.data.filter(e => e.status === 'draft') ?? [])
 const sent = computed(() => emails.value?.data.filter(e => e.status === 'sent') ?? [])
+
+const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+})
+function formatDate(iso: string | null): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  return Number.isNaN(d.getTime()) ? '' : dateFormatter.format(d)
+}
 </script>
 
 <template>
@@ -66,7 +76,7 @@ const sent = computed(() => emails.value?.data.filter(e => e.status === 'sent') 
                 {{ email.subject || 'Untitled' }}
               </NuxtLink>
               <p class="text-xs text-slate-500">
-                Updated {{ email.updated_at }}
+                Updated {{ formatDate(email.updated_at) }}
               </p>
             </div>
             <button
@@ -93,7 +103,7 @@ const sent = computed(() => emails.value?.data.filter(e => e.status === 'sent') 
               {{ email.subject }}
             </NuxtLink>
             <p class="text-xs text-slate-500">
-              Sent {{ email.sent_at }}
+              Sent {{ formatDate(email.sent_at) }}
             </p>
           </li>
         </ul>

@@ -19,6 +19,6 @@ class PreviewEmailRequest extends FormRequest
     /** @return array<string, array<int, string>> */
     public function rules(): array
     {
-        return $this->emailBlockRules();
+        return $this->emailBlockRules(preview: true);
     }
 }

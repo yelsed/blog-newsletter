@@ -4,9 +4,35 @@ function readCookie(name: string): string | null {
   return match ? decodeURIComponent(match[2]) : null
 }
 
+export class ApiError extends Error {
+  status: number
+  errors: Record<string, string[]>
+  constructor(message: string, status: number, errors: Record<string, string[]> = {}) {
+    super(message)
+    this.name = 'ApiError'
+    this.status = status
+    this.errors = errors
+  }
+}
+
+function toApiError(raw: unknown): ApiError {
+  const err = raw as {
+    status?: number
+    statusCode?: number
+    data?: { message?: string, errors?: Record<string, string[]> }
+    message?: string
+  }
+  const status = err.status ?? err.statusCode ?? 0
+  const data = err.data ?? {}
+  const errors = data.errors ?? {}
+  const firstFieldMessage = Object.values(errors).flat()[0]
+  const message = data.message ?? firstFieldMessage ?? err.message ?? 'Request failed.'
+  return new ApiError(message, status, errors)
+}
+
 export function useApi() {
   const config = useRuntimeConfig()
-  const { locale } = useI18n()
+  const nuxtApp = useNuxtApp()
 
   async function ensureCsrfCookie(): Promise<void> {
     const base = config.public.apiBase as string
@@ -26,18 +52,21 @@ export function useApi() {
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Accept-Language': locale.value,
+      'Accept-Language': nuxtApp.$i18n.locale.value,
       ...(xsrf ? { 'X-XSRF-TOKEN': xsrf } : {}),
       ...(options.headers as Record<string, string> | undefined ?? {}),
     }
 
-    const response = await $fetch<T>(`${config.public.apiBase}${path}`, {
-      ...options,
-      credentials: 'include',
-      headers,
-    })
-
-    return response
+    try {
+      return await $fetch<T>(`${config.public.apiBase}${path}`, {
+        ...options,
+        credentials: 'include',
+        headers,
+      })
+    }
+    catch (e) {
+      throw toApiError(e)
+    }
   }
 
   return { api }

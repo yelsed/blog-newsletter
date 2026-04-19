@@ -19,10 +19,19 @@ class TextBlockData extends BlockData
     }
 
     /** @return array<string, array<int, string>> */
-    public static function rules(): array
+    public static function validationRules(): array
     {
         return [
             'body' => ['required', 'string', 'max:5000'],
+            'align' => ['sometimes', 'string', 'in:left,center,right'],
+        ];
+    }
+
+    /** @return array<string, array<int, string>> */
+    public static function previewRules(): array
+    {
+        return [
+            'body' => ['sometimes', 'string', 'max:5000'],
             'align' => ['sometimes', 'string', 'in:left,center,right'],
         ];
     }

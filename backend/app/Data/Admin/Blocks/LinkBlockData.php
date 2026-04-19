@@ -20,11 +20,21 @@ class LinkBlockData extends BlockData
     }
 
     /** @return array<string, array<int, string>> */
-    public static function rules(): array
+    public static function validationRules(): array
     {
         return [
             'label' => ['required', 'string', 'max:255'],
             'href' => ['required', 'url'],
+            'align' => ['sometimes', 'string', 'in:left,center,right'],
+        ];
+    }
+
+    /** @return array<string, array<int, string>> */
+    public static function previewRules(): array
+    {
+        return [
+            'label' => ['sometimes', 'string', 'max:255'],
+            'href' => ['sometimes', 'string', 'max:2048'],
             'align' => ['sometimes', 'string', 'in:left,center,right'],
         ];
     }

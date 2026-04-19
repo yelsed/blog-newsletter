@@ -38,12 +38,29 @@ final class BlockDataFactory
     public static function rulesFor(BlockType $type): array
     {
         return match ($type) {
-            BlockType::Text => TextBlockData::rules(),
-            BlockType::Link => LinkBlockData::rules(),
-            BlockType::ListItems => ListBlockData::rules(),
-            BlockType::Image => ImageBlockData::rules(),
-            BlockType::Gif => GifBlockData::rules(),
-            BlockType::Button => ButtonBlockData::rules(),
+            BlockType::Text => TextBlockData::validationRules(),
+            BlockType::Link => LinkBlockData::validationRules(),
+            BlockType::ListItems => ListBlockData::validationRules(),
+            BlockType::Image => ImageBlockData::validationRules(),
+            BlockType::Gif => GifBlockData::validationRules(),
+            BlockType::Button => ButtonBlockData::validationRules(),
+        };
+    }
+
+    /**
+     * Lenient rules used when rendering a live preview while the composer is being filled in.
+     *
+     * @return array<string, array<int, string>>
+     */
+    public static function previewRulesFor(BlockType $type): array
+    {
+        return match ($type) {
+            BlockType::Text => TextBlockData::previewRules(),
+            BlockType::Link => LinkBlockData::previewRules(),
+            BlockType::ListItems => ListBlockData::previewRules(),
+            BlockType::Image => ImageBlockData::previewRules(),
+            BlockType::Gif => GifBlockData::previewRules(),
+            BlockType::Button => ButtonBlockData::previewRules(),
         };
     }
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Block } from '~/types/email'
+import { stripUid } from '~/types/email'
 
 const props = defineProps<{
   subject: string
@@ -14,7 +15,7 @@ const error = ref('')
 let debounce: ReturnType<typeof setTimeout> | null = null
 
 async function refresh() {
-  if (!props.subject || props.blocks.length === 0) {
+  if (!props.subject && props.blocks.length === 0) {
     html.value = ''
     return
   }
@@ -23,7 +24,7 @@ async function refresh() {
   try {
     const res = await api<{ html: string }>('/admin/emails/preview', {
       method: 'POST',
-      body: JSON.stringify({ subject: props.subject, blocks: props.blocks }),
+      body: JSON.stringify({ subject: props.subject, blocks: props.blocks.map(stripUid) }),
     })
     html.value = res.html
   }

@@ -20,13 +20,24 @@ class ImageBlockData extends BlockData
     }
 
     /** @return array<string, array<int, string>> */
-    public static function rules(): array
+    public static function validationRules(): array
     {
         return [
             'url' => ['required', 'url', 'max:2048'],
             'alt' => ['required', 'string', 'max:255'],
             'width' => ['nullable', 'integer', 'min:1', 'max:2000'],
             'href' => ['nullable', 'url', 'max:2048'],
+        ];
+    }
+
+    /** @return array<string, array<int, string>> */
+    public static function previewRules(): array
+    {
+        return [
+            'url' => ['sometimes', 'string', 'max:2048'],
+            'alt' => ['sometimes', 'string', 'max:255'],
+            'width' => ['nullable', 'integer', 'min:1', 'max:2000'],
+            'href' => ['nullable', 'string', 'max:2048'],
         ];
     }
 }

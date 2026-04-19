@@ -19,11 +19,21 @@ class ListBlockData extends BlockData
     }
 
     /** @return array<string, array<int, string>> */
-    public static function rules(): array
+    public static function validationRules(): array
     {
         return [
             'items' => ['required', 'array', 'min:1', 'max:50'],
             'items.*' => ['required', 'string', 'max:500'],
+            'ordered' => ['sometimes', 'boolean'],
+        ];
+    }
+
+    /** @return array<string, array<int, string>> */
+    public static function previewRules(): array
+    {
+        return [
+            'items' => ['sometimes', 'array', 'max:50'],
+            'items.*' => ['sometimes', 'string', 'max:500'],
             'ordered' => ['sometimes', 'boolean'],
         ];
     }
