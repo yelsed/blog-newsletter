@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\Email\PreviewController;
 use App\Http\Controllers\Api\Admin\Email\SendController;
 use App\Http\Controllers\Api\Admin\Email\SendTestController;
 use App\Http\Controllers\Api\Admin\EmailController;
+use App\Http\Controllers\Api\Admin\Media\UploadController as MediaUploadController;
 use App\Http\Controllers\Api\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\Auth\EnrollmentTokenController;
 use App\Http\Controllers\Api\Auth\RegisteredPasskeyController;
@@ -42,5 +43,6 @@ Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(functi
     Route::post('emails/preview', PreviewController::class);
     Route::post('emails/{email}/send', SendController::class)->middleware('throttle:admin-send');
     Route::post('emails/{email}/send-test', SendTestController::class)->middleware('throttle:admin-test');
+    Route::post('media', MediaUploadController::class)->middleware('throttle:admin-media');
     Route::apiResource('emails', EmailController::class);
 });

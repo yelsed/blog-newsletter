@@ -16,8 +16,8 @@ it('stores a draft email with all supported block types', function (): void {
             ['type' => 'text', 'body' => 'First paragraph', 'align' => 'left'],
             ['type' => 'link', 'label' => 'Docs', 'href' => 'https://example.com'],
             ['type' => 'list', 'items' => ['one', 'two'], 'ordered' => true],
-            ['type' => 'image', 'url' => 'https://example.com/i.png', 'alt' => 'pic'],
-            ['type' => 'gif', 'url' => 'https://example.com/a.gif', 'alt' => 'anim'],
+            ['type' => 'image', 'path' => 'emails/1/i.png', 'alt' => 'pic'],
+            ['type' => 'gif', 'path' => 'emails/1/a.gif', 'alt' => 'anim'],
             ['type' => 'button', 'label' => 'Go', 'href' => 'https://example.com'],
         ],
     ];

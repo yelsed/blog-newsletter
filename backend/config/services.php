@@ -37,4 +37,15 @@ return [
         ],
     ],
 
+    'bunny' => [
+        'cdn_url' => env('BUNNY_CDN_URL', 'https://newsletter-assets.b-cdn.net'),
+        'storage_zone' => env('BUNNY_STORAGE_ZONE', 'newsletter-assets'),
+        'storage_endpoint' => env('BUNNY_STORAGE_ENDPOINT', 'storage.bunnycdn.com'),
+        'storage_api_key' => env('BUNNY_STORAGE_API_KEY'),
+    ],
+
+    'media' => [
+        'driver' => env('MEDIA_DRIVER', 'local'),
+    ],
+
 ];

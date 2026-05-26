@@ -5,8 +5,8 @@ type WithUid = { _uid: string }
 export type TextBlock = WithUid & { type: 'text', body: string, align: BlockAlign }
 export type LinkBlock = WithUid & { type: 'link', label: string, href: string, align: BlockAlign }
 export type ListBlock = WithUid & { type: 'list', items: string[], ordered: boolean }
-export type ImageBlock = WithUid & { type: 'image', url: string, alt: string, width: number | null, href: string | null }
-export type GifBlock = WithUid & { type: 'gif', url: string, alt: string, width: number | null }
+export type ImageBlock = WithUid & { type: 'image', path: string, alt: string, width: number | null, href: string | null }
+export type GifBlock = WithUid & { type: 'gif', path: string, alt: string, width: number | null }
 export type ButtonBlock = WithUid & { type: 'button', label: string, href: string, align: BlockAlign }
 
 export type Block = TextBlock | LinkBlock | ListBlock | ImageBlock | GifBlock | ButtonBlock
@@ -46,8 +46,8 @@ export function blockDefaults(type: BlockType): Block {
     case 'text':   return { _uid, type: 'text', body: '', align: 'left' }
     case 'link':   return { _uid, type: 'link', label: '', href: '', align: 'left' }
     case 'list':   return { _uid, type: 'list', items: [''], ordered: false }
-    case 'image':  return { _uid, type: 'image', url: '', alt: '', width: null, href: null }
-    case 'gif':    return { _uid, type: 'gif', url: '', alt: '', width: null }
+    case 'image':  return { _uid, type: 'image', path: '', alt: '', width: null, href: null }
+    case 'gif':    return { _uid, type: 'gif', path: '', alt: '', width: null }
     case 'button': return { _uid, type: 'button', label: '', href: '', align: 'left' }
   }
 }

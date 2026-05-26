@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Antenna -->
+  <rect x="96" y="8" width="8" height="22" rx="3" fill="#A855F7" stroke="#7C22CC" stroke-width="2"/>
+  <circle cx="100" cy="10" r="8" fill="#C084FC" stroke="#7C22CC" stroke-width="2"/>
+  <!-- Head -->
+  <rect x="28" y="30" width="144" height="110" rx="18" fill="#A855F7" stroke="#7C22CC" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Eyes -->
+  <rect x="48" y="56" width="36" height="30" rx="8" fill="#1A0A2E" stroke="#7C22CC" stroke-width="2"/>
+  <rect x="116" y="56" width="36" height="30" rx="8" fill="#1A0A2E" stroke="#7C22CC" stroke-width="2"/>
+  <!-- Eye glow -->
+  <circle cx="66" cy="71" r="10" fill="#E879F9"/>
+  <circle cx="134" cy="71" r="10" fill="#E879F9"/>
+  <!-- Mouth -->
+  <rect x="52" y="106" width="96" height="18" rx="6" fill="#1A0A2E" stroke="#7C22CC" stroke-width="2"/>
+  <!-- Mouth teeth/grid -->
+  <line x1="76" y1="106" x2="76" y2="124" stroke="#A855F7" stroke-width="2"/>
+  <line x1="100" y1="106" x2="100" y2="124" stroke="#A855F7" stroke-width="2"/>
+  <line x1="124" y1="106" x2="124" y2="124" stroke="#A855F7" stroke-width="2"/>
+  <!-- Ear bolts -->
+  <circle cx="28" cy="85" r="10" fill="#C084FC" stroke="#7C22CC" stroke-width="3"/>
+  <circle cx="172" cy="85" r="10" fill="#C084FC" stroke="#7C22CC" stroke-width="3"/>
+  <!-- Neck -->
+  <rect x="76" y="140" width="48" height="26" rx="6" fill="#A855F7" stroke="#7C22CC" stroke-width="3"/>
+</svg>

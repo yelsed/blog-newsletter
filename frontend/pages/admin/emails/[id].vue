@@ -141,6 +141,7 @@ const canSend = computed(() => email.value.id !== null && email.value.status ===
     </p>
 
     <ComposerShell
+      :email-id="email.id"
       :initial-subject="email.subject"
       :initial-blocks="email.blocks"
       :saving="saving"

@@ -1,0 +1,151 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1777367459973,
+  "projectRoot": "/home/yelsed/Projects/blog-laravel-nuxt",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": "npm run dev",
+    "scripts": {
+      "up": "cd backend && ./vendor/bin/sail up -d",
+      "down": "cd backend && ./vendor/bin/sail down",
+      "dev": "npm run up && concurrently -n queue,logs,frontend,emails,emails-sync -c magenta,gray,cyan,yellow,green --kill-others \"npm:dev:queue\" \"npm:dev:logs\" \"npm:dev:frontend\" \"npm:dev:emails\" \"npm:dev:emails-sync\"",
+      "dev:queue": "cd backend && ./vendor/bin/sail artisan queue:listen --tries=1 --timeout=0",
+      "dev:logs": "cd backend && ./vendor/bin/sail artisan pail --timeout=0",
+      "dev:frontend": "cd frontend && npm run dev",
+      "dev:emails": "cd emails && npm run dev",
+      "dev:emails-sync": "cd emails && chokidar \"emails/**/*.html\" \"components/**/*.html\" \"layouts/**/*.html\" \"config.js\" \"config.production.js\" -c \"npm run deploy\""
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs"
+    ],
+    "gitBranches": {
+      "defaultBranch": "master",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "backend": {
+      "path": "backend",
+      "purpose": null,
+      "fileCount": 16,
+      "lastAccessed": 1777367459965,
+      "keyFiles": [
+        "README.md",
+        "artisan",
+        "compose.yaml",
+        "composer.json",
+        "composer.lock"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 3,
+      "lastAccessed": 1777367459965,
+      "keyFiles": [
+        "learnings.md",
+        "overview.md",
+        "post-setup-phases.md"
+      ]
+    },
+    "emails": {
+      "path": "emails",
+      "purpose": null,
+      "fileCount": 8,
+      "lastAccessed": 1777367459969,
+      "keyFiles": [
+        "config.js",
+        "config.production.js",
+        "package-lock.json",
+        "package.json",
+        "preview-vars.js"
+      ]
+    },
+    "frontend": {
+      "path": "frontend",
+      "purpose": null,
+      "fileCount": 8,
+      "lastAccessed": 1777367459971,
+      "keyFiles": [
+        "README.md",
+        "app.vue",
+        "nuxt.config.ts",
+        "package-lock.json",
+        "package.json"
+      ]
+    },
+    "backend/app": {
+      "path": "backend/app",
+      "purpose": "Application code",
+      "fileCount": 0,
+      "lastAccessed": 1777367459972,
+      "keyFiles": []
+    },
+    "emails/components": {
+      "path": "emails/components",
+      "purpose": "UI components",
+      "fileCount": 5,
+      "lastAccessed": 1777367459972,
+      "keyFiles": [
+        "button.html",
+        "divider.html",
+        "image.html"
+      ]
+    },
+    "emails/node_modules": {
+      "path": "emails/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 1,
+      "lastAccessed": 1777367459972,
+      "keyFiles": []
+    },
+    "frontend/assets": {
+      "path": "frontend/assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1777367459973,
+      "keyFiles": []
+    },
+    "frontend/components": {
+      "path": "frontend/components",
+      "purpose": "UI components",
+      "fileCount": 6,
+      "lastAccessed": 1777367459973,
+      "keyFiles": [
+        "AppFooter.vue",
+        "AppHeader.vue",
+        "NewsletterForm.vue"
+      ]
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

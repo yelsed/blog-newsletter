@@ -6,6 +6,7 @@ import BlockList from './BlockList.vue'
 import PreviewPane from './PreviewPane.vue'
 
 const props = defineProps<{
+  emailId: number | null
   initialSubject: string
   initialBlocks: Block[]
   saving: boolean
@@ -50,7 +51,7 @@ function handleSend() {
         class="w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-lg font-semibold text-slate-900 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
       >
 
-      <BlockList v-model:blocks="blocks" />
+      <BlockList v-model:blocks="blocks" :email-id="props.emailId" />
 
       <AddBlockMenu @add="addBlock" />
 

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Beam -->
+  <rect x="72" y="28" width="92" height="14" rx="5" fill="#FF6B6B" stroke="#CC2222" stroke-width="2"/>
+  <!-- Left note stem -->
+  <rect x="72" y="28" width="12" height="100" rx="4" fill="#FF6B6B" stroke="#CC2222" stroke-width="2"/>
+  <!-- Right note stem -->
+  <rect x="152" y="28" width="12" height="80" rx="4" fill="#FF6B6B" stroke="#CC2222" stroke-width="2"/>
+  <!-- Left note head -->
+  <ellipse cx="80" cy="138" rx="22" ry="16" transform="rotate(-18 80 138)" fill="#FF6B6B" stroke="#CC2222" stroke-width="4"/>
+  <!-- Right note head -->
+  <ellipse cx="160" cy="118" rx="22" ry="16" transform="rotate(-18 160 118)" fill="#FF6B6B" stroke="#CC2222" stroke-width="4"/>
+</svg>

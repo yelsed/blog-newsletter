@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "maizzle serve",
     "build": "maizzle build production",
-    "deploy": "maizzle build production && node scripts/copy-to-laravel.js"
+    "deploy": "maizzle build production && node scripts/sync-images.js && node scripts/copy-to-laravel.js"
   },
   "dependencies": {
     "@maizzle/framework": "latest",

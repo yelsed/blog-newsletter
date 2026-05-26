@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- TV body -->
+  <rect x="14" y="30" width="172" height="126" rx="18" fill="#F59E0B" stroke="#B45309" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Screen bezel -->
+  <rect x="28" y="44" width="120" height="90" rx="10" fill="#1C1108" stroke="#B45309" stroke-width="3"/>
+  <!-- Screen glow -->
+  <rect x="32" y="48" width="112" height="82" rx="7" fill="#1C1108"/>
+  <!-- Scanlines / content -->
+  <rect x="40" y="62" width="96" height="8" rx="3" fill="#F59E0B" opacity="0.6"/>
+  <rect x="40" y="78" width="72" height="8" rx="3" fill="#FCD34D" opacity="0.5"/>
+  <rect x="40" y="94" width="88" height="8" rx="3" fill="#F59E0B" opacity="0.4"/>
+  <rect x="40" y="110" width="60" height="8" rx="3" fill="#FCD34D" opacity="0.4"/>
+  <!-- Controls panel -->
+  <circle cx="170" cy="80" r="8" fill="#B45309" stroke="#92400E" stroke-width="2"/>
+  <circle cx="170" cy="102" r="6" fill="#B45309" stroke="#92400E" stroke-width="2"/>
+  <rect x="162" y="115" width="16" height="28" rx="4" fill="#B45309" opacity="0.6"/>
+  <!-- Legs -->
+  <rect x="50" y="156" width="22" height="32" rx="6" fill="#F59E0B" stroke="#B45309" stroke-width="4"/>
+  <rect x="128" y="156" width="22" height="32" rx="6" fill="#F59E0B" stroke="#B45309" stroke-width="4"/>
+  <!-- Antenna ears -->
+  <rect x="60" y="10" width="8" height="28" rx="3" fill="#B45309" stroke="#92400E" stroke-width="2" transform="rotate(-15 64 10)"/>
+  <rect x="132" y="10" width="8" height="28" rx="3" fill="#B45309" stroke="#92400E" stroke-width="2" transform="rotate(15 136 10)"/>
+</svg>

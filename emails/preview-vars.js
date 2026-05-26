@@ -7,4 +7,5 @@ export default {
   appName: 'Newsletter',
   subscriberName: 'Preview User',
   verificationUrl: 'http://localhost:3000/newsletter/verify?token=preview-token-abc123',
+  cdnUrl: 'https://newsletter-assets.b-cdn.net',
 }

@@ -8,6 +8,7 @@ import ListBlock from './ListBlock.vue'
 import TextBlock from './TextBlock.vue'
 
 const blocks = defineModel<Block[]>('blocks', { required: true })
+defineProps<{ emailId: number | null }>()
 
 function move(index: number, dir: -1 | 1) {
   const newIndex = index + dir
@@ -49,8 +50,8 @@ function remove(index: number) {
       <TextBlock v-if="block.type === 'text'" v-model:block="blocks[index] as Extract<Block, { type: 'text' }>" />
       <LinkBlock v-else-if="block.type === 'link'" v-model:block="blocks[index] as Extract<Block, { type: 'link' }>" />
       <ListBlock v-else-if="block.type === 'list'" v-model:block="blocks[index] as Extract<Block, { type: 'list' }>" />
-      <ImageBlock v-else-if="block.type === 'image'" v-model:block="blocks[index] as Extract<Block, { type: 'image' }>" />
-      <GifBlock v-else-if="block.type === 'gif'" v-model:block="blocks[index] as Extract<Block, { type: 'gif' }>" />
+      <ImageBlock v-else-if="block.type === 'image'" v-model:block="blocks[index] as Extract<Block, { type: 'image' }>" :email-id="emailId" />
+      <GifBlock v-else-if="block.type === 'gif'" v-model:block="blocks[index] as Extract<Block, { type: 'gif' }>" :email-id="emailId" />
       <ButtonBlock v-else-if="block.type === 'button'" v-model:block="blocks[index] as Extract<Block, { type: 'button' }>" />
     </li>
   </ul>

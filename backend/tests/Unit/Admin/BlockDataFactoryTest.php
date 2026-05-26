@@ -51,21 +51,23 @@ it('hydrates a list block', function () {
 it('hydrates an image block', function () {
     $block = BlockDataFactory::fromArray([
         'type' => 'image',
-        'url' => 'https://example.com/a.png',
+        'path' => 'emails/1/a.png',
         'alt' => 'pic',
     ]);
 
-    expect($block)->toBeInstanceOf(ImageBlockData::class);
+    expect($block)->toBeInstanceOf(ImageBlockData::class)
+        ->and($block->path)->toBe('emails/1/a.png');
 });
 
 it('hydrates a gif block', function () {
     $block = BlockDataFactory::fromArray([
         'type' => 'gif',
-        'url' => 'https://example.com/a.gif',
+        'path' => 'emails/1/a.gif',
         'alt' => 'anim',
     ]);
 
-    expect($block)->toBeInstanceOf(GifBlockData::class);
+    expect($block)->toBeInstanceOf(GifBlockData::class)
+        ->and($block->path)->toBe('emails/1/a.gif');
 });
 
 it('hydrates a button block', function () {

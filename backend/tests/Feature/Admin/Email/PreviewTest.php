@@ -2,11 +2,18 @@
 
 declare(strict_types=1);
 
+use App\Contracts\MediaStorage;
+
 beforeEach(function (): void {
     $this->admin = adminUser();
 });
 
 it('renders HTML containing fragments for each block type', function (): void {
+    $this->mock(MediaStorage::class, function ($mock): void {
+        $mock->shouldReceive('url')
+            ->andReturnUsing(fn (string $path): string => 'https://cdn.example.test/'.$path);
+    });
+
     $response = $this->actingAs($this->admin)
         ->postJson('/api/admin/emails/preview', [
             'subject' => 'Sample',
@@ -14,8 +21,8 @@ it('renders HTML containing fragments for each block type', function (): void {
                 ['type' => 'text', 'body' => 'Hello from the text block', 'align' => 'center'],
                 ['type' => 'link', 'label' => 'DocsLink', 'href' => 'https://example.com/docs'],
                 ['type' => 'list', 'items' => ['apples', 'pears'], 'ordered' => false],
-                ['type' => 'image', 'url' => 'https://example.com/cat.png', 'alt' => 'A cat'],
-                ['type' => 'gif', 'url' => 'https://example.com/wave.gif', 'alt' => 'Wave'],
+                ['type' => 'image', 'path' => 'emails/1/cat.png', 'alt' => 'A cat'],
+                ['type' => 'gif', 'path' => 'emails/1/wave.gif', 'alt' => 'Wave'],
                 ['type' => 'button', 'label' => 'OpenIt', 'href' => 'https://example.com/open'],
             ],
         ])
@@ -29,9 +36,9 @@ it('renders HTML containing fragments for each block type', function (): void {
         ->toContain('<ul')
         ->toContain('apples')
         ->toContain('pears')
-        ->toContain('https://example.com/cat.png')
+        ->toContain('https://cdn.example.test/emails/1/cat.png')
         ->toContain('alt="A cat"')
-        ->toContain('https://example.com/wave.gif')
+        ->toContain('https://cdn.example.test/emails/1/wave.gif')
         ->toContain('OpenIt')
         ->toContain('https://example.com/open');
 });

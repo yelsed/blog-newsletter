@@ -9,8 +9,8 @@
     "copyright": "© {year} {brand}. All rights reserved."
   },
   "home": {
-    "title": "Stay in the loop",
-    "subtitle": "Subscribe to our newsletter for fun updates, hobby tips, and interesting reads delivered straight to your inbox."
+    "title": "Tech, tunes & tangents.",
+    "subtitle": "A personal newsletter on webdev, retro tech, AI, football, music, poetry, and whatever else catches my eye. No algorithm, just email."
   },
   "form": {
     "name_label": "Name (optional)",

@@ -1,0 +1,22 @@
+<script props>
+  module.exports = {
+    path: props.path,
+    alt: props.alt || '',
+    width: props.width,
+    height: props.height,
+    classAttr: props.class || '',
+  }
+</script>
+
+<if condition="width && height">
+  <img attributes src="{{ page.cdnUrl }}/{{ path }}" alt="{{ alt }}" width="{{ width }}" height="{{ height }}" class="{{ classAttr }}" style="display: block; border: 0; max-width: 100%; height: auto;">
+</if>
+<elseif condition="width">
+  <img attributes src="{{ page.cdnUrl }}/{{ path }}" alt="{{ alt }}" width="{{ width }}" class="{{ classAttr }}" style="display: block; border: 0; max-width: 100%; height: auto;">
+</elseif>
+<elseif condition="height">
+  <img attributes src="{{ page.cdnUrl }}/{{ path }}" alt="{{ alt }}" height="{{ height }}" class="{{ classAttr }}" style="display: block; border: 0; max-width: 100%; height: auto;">
+</elseif>
+<else>
+  <img attributes src="{{ page.cdnUrl }}/{{ path }}" alt="{{ alt }}" class="{{ classAttr }}" style="display: block; border: 0; max-width: 100%; height: auto;">
+</else>

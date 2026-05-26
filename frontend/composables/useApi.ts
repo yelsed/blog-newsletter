@@ -69,5 +69,28 @@ export function useApi() {
     }
   }
 
-  return { api }
+  async function upload<T>(path: string, formData: FormData): Promise<T> {
+    await ensureCsrfCookie()
+    const xsrf = readCookie('XSRF-TOKEN')
+
+    const headers: Record<string, string> = {
+      Accept: 'application/json',
+      'Accept-Language': nuxtApp.$i18n.locale.value,
+      ...(xsrf ? { 'X-XSRF-TOKEN': xsrf } : {}),
+    }
+
+    try {
+      return await $fetch<T>(`${config.public.apiBase}${path}`, {
+        method: 'POST',
+        credentials: 'include',
+        body: formData,
+        headers,
+      })
+    }
+    catch (e) {
+      throw toApiError(e)
+    }
+  }
+
+  return { api, upload }
 }

@@ -11,7 +11,7 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class GifBlockData extends BlockData
 {
     public function __construct(
-        public readonly string $url,
+        public readonly string $path,
         public readonly string $alt,
         public readonly ?int $width = null,
     ) {
@@ -22,7 +22,7 @@ class GifBlockData extends BlockData
     public static function validationRules(): array
     {
         return [
-            'url' => ['required', 'url', 'max:2048'],
+            'path' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z0-9_\-.\/]+$/', 'not_regex:/\.\./'],
             'alt' => ['required', 'string', 'max:255'],
             'width' => ['nullable', 'integer', 'min:1', 'max:2000'],
         ];
@@ -32,7 +32,7 @@ class GifBlockData extends BlockData
     public static function previewRules(): array
     {
         return [
-            'url' => ['sometimes', 'string', 'max:2048'],
+            'path' => ['sometimes', 'string', 'max:255'],
             'alt' => ['sometimes', 'string', 'max:255'],
             'width' => ['nullable', 'integer', 'min:1', 'max:2000'],
         ];
