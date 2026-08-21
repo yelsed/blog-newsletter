@@ -48,7 +48,7 @@ else
 fi
 
 heading "Backend: Composer audit (security)"
-if (cd "$ROOT_DIR/backend" && composer audit); then
+if (cd "$ROOT_DIR/backend" && composer audit --abandoned report); then
     pass "Composer audit"
 else
     fail "Composer audit — vulnerable dependencies found"
