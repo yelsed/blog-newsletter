@@ -7,7 +7,7 @@
     "deploy": "maizzle build production && node scripts/sync-images.js && node scripts/copy-to-laravel.js"
   },
   "dependencies": {
-    "@maizzle/framework": "latest",
-    "tailwindcss-preset-email": "latest"
+    "@maizzle/framework": "^5.5.0",
+    "tailwindcss-preset-email": "^1.4.1"
   }
 }
